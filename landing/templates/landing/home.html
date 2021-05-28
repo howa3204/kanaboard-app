@@ -1,0 +1,372 @@
+{% extends 'landing/root.html' %}
+{% load static %}
+
+{% block body %}
+
+<section class="pt-4 pt-md-11">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-12 col-md-5 col-lg-6 order-md-2">
+        <img src="{% static 'landing/img/screenshots/desktop/dashboard.png' %}" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0 screenshot img-fluid" alt="..." data-aos="fade-up" data-aos-delay="100">
+      </div>
+
+      <div class="col-12 col-md-7 col-lg-6 order-md-1" data-aos="fade-up">
+        <h1 class="display-3 text-center text-md-start"><span class="text-primary">Kanaboard</span> makes it easier to get into<br><span class="text-primary">medical school</span>.</h1>
+        <p class="lead text-center text-md-start text-muted mb-6 mb-lg-8">Stay focused, organized, and on track wherever you are in your pre-med journey.</p>
+        <div class="text-center text-md-start">
+          <a href="{% url 'registration:register' %}" class="btn btn-primary shadow lift me-1">Try for free</a>
+          <a href="{% url 'landing:home' %}#learn" class="btn btn-primary-soft shadow lift">Learn More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="learn" class="py-8 py-md-11 border-bottom">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12 col-md-4" data-aos="fade-up">
+        <div class="text-primary mb-3">
+          <span class="text-primary" data-feather="layout"></span>
+        </div>
+        <h3 class="text-primary">Stay Focused
+        </h3>
+        <p class="text-muted mb-6 mb-md-0">Visualize your progress with your personalized dashboard. View your cumulative and science GPAs, MCAT scores, and activities at a glance.</p>
+      </div>
+
+      <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
+        <div class="text-primary mb-3">
+          <span class="text-primary" data-feather="package"></span>
+        </div>
+        <h3 class="text-primary">Get Organized</h3>
+        <p class="text-muted mb-6 mb-md-0">Assign tasks to each part of your application, so you never get off track, and always know what to work on.</p>
+      </div>
+
+      <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-primary mb-3">
+          <span class="text-primary" data-feather="clipboard"></span>
+        </div>
+        <h3 class="text-primary">Keep Track of Everything</h3>
+        <p class="text-muted mb-0">Record activities, work experience, courses, research, and everything else you need to be a competitive applicant.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-8 pb-md-8">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 col-lg-6 order-md-2">
+        <h2><span class="text-primary">Peace of mind </span>when it's time to apply.</h2>
+        <p class="fs-lg text-muted mb-6">See the big picture of your application with info on your GPA, MCAT score, and completed activities on your dashboard. With Kanaboard, you can know for sure you'll have everything you need to get into your dream medical school.</p>
+      </div>
+      <div class="col-12 col-md-6 order-md-1">
+        <div class="w-100 w-md-130 float-end mb-6 mb-md-0">
+          <div class="shape shape-blur-4 svg-shim text-gray-200">
+          </div>
+          <div class="device device-macbook">
+            <img src="{% static 'landing/img/screenshots/desktop/dashboard.png' %}" class="screenshot img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-8 pb-md-8">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 col-lg-6">
+        <h2>Easily manage <span class="text-primary">every detail</span> of your application.</h2>
+        <p class="fs-lg text-muted mb-6">Create a task and assign it to any part of your application, then give it a priority and a due date. Filter your tasks by section, priority or due date so you always know what to work on.</p>
+      </div>
+      <div class="col-12 col-md-5 col-lg-6">
+        <div class="w-md-150 w-lg-130 position-relative">
+          <div class="shape shape-fluid-y shape-blur-4 svg-shim text-gray-200">
+          </div>
+          <div>
+            <img src="{% static 'landing/img/screenshots/desktop/activities.png' %}" class="screenshot img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-8 pb-md-8">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 col-lg-6 order-md-2">
+        <h2>Keep track of all your<br><span class="text-primary">activities</span>.
+        </h2>
+        <p class="fs-lg text-muted mb-6">Record your clinical experience, volunteering, shadowing, research and all other activities with the same information you'll need for your application, so there's no scrambling to find anything when you apply. Easily log new hours directly from your dashboard.</p>
+      </div>
+      <div class="col-12 col-md-6 order-md-1">
+        <div class="w-100 w-md-130 float-end mb-6 mb-md-0">
+          <div class="shape shape-blur-4 svg-shim text-gray-200">
+          </div>
+          <div>
+            <img src="{% static 'landing/img/screenshots/desktop/activities.png' %}" class="screenshot img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-8 pb-md-8">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 col-lg-6">
+        <h2>Enter your <span class="text-primary">courses </span>and keep track of your <span class="text-primary">pre-reqs</span>.</h2>
+        <p class="fs-lg text-muted mb-6">Kanaboard calculates your cumulative and science GPAs for you, and shows you any GPA trends.</p>
+      </div>
+      <div class="col-12 col-md-5 col-lg-6">
+        <div class="w-md-150 w-lg-130 position-relative" data-aos="#">
+          <div class="shape shape-fluid-y shape-blur-4 svg-shim text-gray-200">
+          </div>
+          <div>
+            <img src="{% static 'landing/img/screenshots/desktop/activities.png' %}" class="screenshot img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-8 pb-md-8">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 col-lg-6 order-md-2">
+        <h2>Keep track of <br><span class="text-primary">letters of recommendation</span> you'll need to apply.</h2>
+        <p class="fs-lg text-muted mb-6">Stay reminded of professors and contacts you'll need to network with, so you can ask for strong letters of recommendation before you apply.</p>
+      </div>
+      <div class="col-12 col-md-6 order-md-1">
+        <div class="w-100 w-md-130 float-end mb-6 mb-md-0">
+          <div class="shape shape-blur-4 svg-shim text-gray-200">
+          </div>
+          <div class="device device-macbook">
+            <img src="{% static 'landing/img/screenshots/desktop/activities.png' %}" class="screenshot img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-8 pb-md-8">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 col-lg-6">
+        <h2>Record your practice and official<br>
+          <span class="text-primary">MCAT </span>scores.</h2>
+        <p class="fs-lg text-muted mb-6">See your practice MCAT progress so you know when you're ready for the real deal.</p>
+      </div>
+      <div class="col-12 col-md-5 col-lg-6">
+        <div class="w-md-150 w-lg-130 position-relative">
+          <div class="shape shape-fluid-y shape-blur-4 svg-shim text-gray-200">
+          </div>
+          <div>
+            <img src="{% static 'landing/img/screenshots/desktop/activities.png' %}" class="screenshot img-fluid" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-8 pt-md-8 pb-4 pb-md-4">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-md-7 col-lg-6">
+
+        <h2>
+          <span class="text-primary">More to come</span>!
+        </h2>
+
+        <p class="fs-lg text-muted mb-6">We're hard at work making Kanaboard even better. Below are just a few of the things we're working on:</p>
+
+        <div class="d-flex">
+          <span class="text-primary" data-feather="edit"></span>
+          <div>
+            <h4 class="mb-1">&nbsp;&nbsp;Create drafts of your personal comments essays.</h4>
+            <p class="text-muted mb-6">
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <span class="text-primary" data-feather="file-text"></span>
+          <div>
+            <h4 class="mb-1">&nbsp;&nbsp;Prewrite your secondary application essays.</h4>
+            <p class="text-muted mb-6">
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <span class="text-primary" data-feather="trending-up"></span>
+          <div>
+            <h4 class="mb-1">&nbsp;&nbsp;Support for AACOMAS & TMDSAS application services.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pt-9 pt-md-12 bg-light-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <h1 class="fw-bold">Simple pricing</h1>
+        <p class="lead text-gray-700">Try Kanaboard free for 14 days. No credit card required.</p>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center gx-0">
+
+      <div class="col-12 col-md-5 p-4">
+        <div class="card shadow-lg mb-6 mb-md-0">
+          <div class="card-body">
+            <div class="text-center mb-3">
+              <span class="badge rounded-pill bg-primary-soft">
+                <span class="h6 text-uppercase">Monthly</span>
+              </span>
+            </div>
+            <div class="d-flex justify-content-center">
+              <span class="h2 mb-0 mt-2">$</span>
+              <span class="price display-2 mb-0" data-annual="29" data-monthly="49">5.99</span>
+            </div>
+            <p class="text-center text-muted mb-5">per month</p>
+            <div class="d-flex">
+              <div class="badge badge-rounded-circle bg-primary-soft mt-1 me-4">
+                <i class="fe fe-check"></i>
+              </div>
+              <p>Billed monthly</p>
+            </div>
+            <a href="{% url 'registration:register' %}" class="btn w-100 btn-primary">Sign up for free</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-5 p-4">
+        <div class="card shadow-lg mb-6 mb-md-0">
+          <div class="card-body">
+            <div class="text-center mb-3">
+              <span class="badge rounded-pill bg-primary-soft">
+                <span class="h6 text-uppercase">Yearly</span>
+              </span>
+            </div>
+            <div class="d-flex justify-content-center">
+              <span class="h2 mb-0 mt-2">$</span>
+              <span class="price display-2 mb-0" data-annual="29" data-monthly="49">59</span>
+            </div>
+            <p class="text-center text-muted mb-5">per year</p>
+            <div class="d-flex">
+              <div class="badge badge-rounded-circle bg-primary-soft mt-1 me-4">
+                <i class="fe fe-check"></i>
+              </div>
+              <p>Billed yearly</p>
+            </div>
+            <div class="d-flex">
+              <div class="badge badge-rounded-circle bg-primary-soft mt-1 me-4">
+                <i class="fe fe-check"></i>
+              </div>
+              <p>$4.91 per month</p>
+            </div>
+            <a href="{% url 'registration:register' %}" class="btn w-100 btn-primary">Sign up for free</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="position-relative mt-n15">
+  <div class="shape shape-bottom shape-fluid-x svg-shim text-dark">
+    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+  </div>
+</div>
+
+<section class="pt-15 bg-dark">
+  <div id="faqs" class="container pt-8 pt-md-11">
+    <div class="row justify-content-center mb-6">
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <h1 class="fw-bold text-white">Frequently asked questions</h1>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-12 col-md-6">
+        <div class="d-flex">
+          <div class="badge badge-lg badge-rounded-circle bg-primary">
+            <span>?</span>
+          </div>
+          <div class="ms-5">
+            <h4 class="text-white">Who is Kanaboard for?</h4>
+            <p class="text-muted mb-6 mb-md-8">Kanaboard was built for any pre-med student planning on attending medical school. Whether you're a freshman or a non-traditional student, Kanaboard will help you plan and stay on track wherever you are in the pre-med process.</p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <div class="badge badge-lg badge-rounded-circle bg-primary">
+            <span>?</span>
+          </div>
+          <div class="ms-5">
+            <h4 class="text-white">I use Excel to keep track of my application. How is Kanaboard different?</h4>
+            <p class="text-muted mb-6 mb-md-8">Kanaboard makes it easy to assign tasks to each area of your application, so you'll always know what to work on. It also asks the exact information you'll need for your application, so you can copy everything directly from your Kanaboard account when it's time to apply.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="d-flex">
+          <div class="badge badge-lg badge-rounded-circle bg-primary">
+            <span>?</span>
+          </div>
+          <div class="ms-5">
+            <h4 class="text-white">Is there a mobile app?</h4>
+            <p class="text-muted mb-6 mb-md-8">Not yet! However, our website is mobile friendly so you can easily access and use your account on your mobile device.</p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <div class="badge badge-lg badge-rounded-circle bg-primary">
+            <span>?</span>
+          </div>
+          <div class="ms-5">
+            <h4 class="text-white">Can I get a refund?</h4>
+            <p class="text-muted mb-6 mb-md-8">Absolutely. If you're not happy with Kanaboard within two months of paying for a monthly or yearly subscription, we'll give you a full refund. No questions asked. Refer to our <a class="text-primary" href="{% url 'landing:refund' %}">Refund Policy</a> for more information.</p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <div class="badge badge-lg badge-rounded-circle bg-primary">
+            <span>?</span>
+          </div>
+          <div class="ms-5">
+            <h4 class="text-white">Have another question?</h4>
+            <p class="text-muted mb-6 mb-md-0">Get in touch with us at <a href="mailto:hello@kanaboard.com">hello@kanaboard.com</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-8 bg-dark">
+</section>
+
+<div class="position-relative">
+  <div class="shape shape-bottom shape-fluid-x svg-shim text-gray-200">
+    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+  </div>
+</div>
+
+{% endblock body %}

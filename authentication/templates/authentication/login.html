@@ -1,0 +1,88 @@
+{% extends 'base/root.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="d-flex flex-column flex-root">
+  <div class="login login-2 login-signin-on d-flex flex-column flex-column-fluid bg-white position-relative overflow-hidden" id="kt_login">
+    <div class="login-body d-flex flex-column-fluid align-items-stretch justify-content-center">
+      <div class="container row">
+        <div class="col-lg-12 d-flex align-items-center justify-content-center">
+          <div class="login-form login-signin">
+            <form method="POST" action="" class="form w-xxl-550px rounded-lg p-20" >
+            {% csrf_token %}
+
+              <div class="pb-4 pt-lg-0 pt-5">
+                <a href="{% url 'authentication:login' %}"><h1 style="color: #335EEA" class="font-weight-bolder">Kanaboard</h1></a>
+              </div>
+
+              <div class="form-group">
+                <label class="font-size-h6 font-weight-bolder text-dark">Username</label>
+                <input name="username" type="username" class="form-control form-control-solid h-auto p-6 rounded-lg" autocomplete="off" placeholder="Username">
+              </div>
+
+              <div class="form-group">
+                <div class="d-flex justify-content-between mt-n5">
+                  <label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
+                  <a href="{% url 'reset_password' %}" style="color: #335EEA" class="font-size-h6 font-weight-bolder text-hover-dark pt-5">Forgot Password?</a>
+                </div>
+                <input name="password" type="password" class="form-control form-control-solid h-auto p-6 rounded-lg" placeholder="Enter your password">
+
+                {% for message in messages %}
+                  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success alert-dismissable mt-2 mb-0 text-center" data-dismiss="alert" aria-label="close" class="close">{{ message }}</div>
+                  {% endif %}
+                {% endfor %}
+
+                {% for message in messages %}
+                  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger alert-dismissable mt-2 mb-0 text-center" data-dismiss="alert" aria-label="close" class="close">{{ message }}</div>
+                  {% endif %}
+                {% endfor %}
+
+                {% if form.errors %}
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                        <p class="form-error text-danger mb-2 mt-5">{{ error|escape }}</p>
+                    {% endfor %}
+                  {% endfor %}
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                  {% for field in form %}
+                    {% for error in form.non_field_errors %}
+                      <p class="form-error text-danger mb-2 mt-5">{{ error|escape }}</p>
+                    {% endfor %}
+                  {% endfor %}
+                {% endif %}
+
+                <div class="pb-lg-0 pb-5">
+                  <input style="color: #335EEA" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3" type="submit" value="Sign In">
+                </div>
+
+                <div class="d-flex justify-content-between mt-n5">
+                  <a href="{% url 'registration:register' %}" style="color: #335EEA" class="font-size-h6 font-weight-bolder text-hover-dark pt-5">Don't have an account? Sign up.</a>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-footer pb-8 flex-column-auto">
+      <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center">
+        <div class="font-size-h6 font-weight-bolder order-1 order-md-2 py-2 py-md-0">
+          <a href="{% url 'landing:home' %}" class="text-dark">&copy; Kanaboard</a>
+          <a href="mailto:hello@kanaboard.com" class="text-dark ml-10">Contact</a>
+          <a href="{% url 'landing:privacy' %}" class="text-dark ml-10">Privacy</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+

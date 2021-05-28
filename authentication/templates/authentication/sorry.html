@@ -1,0 +1,39 @@
+{% extends 'account_settings/settings.html' %}
+
+{% block content %}
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="flex-row-fluid">
+          <div class="card card-custom">
+            <div class="card-header pl-9 pt-6">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bold text-dark">Hey there, future doctor!</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col-lg-12 col-xl-12">
+                  <h5 class="text-left font-weight-bold text-dark">It looks like your free trial is over. If you'd like to continue using Kanaboard, please <a href="{% url 'billing:billing' %}">update your payment information</a>. If you have any questions, or suggestions on how we can improve Kanaboard, please <a href="{% url 'contact:contact' %}">let us know</a>. We're here for you!</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% for message in messages %}
+
+          <div class="alert alert-success alert-dismissable mt-3 mb-3 text-center" data-dismiss="alert" aria-label="close" class="close" type="submit" value="Login">
+            {{ message }}
+          </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

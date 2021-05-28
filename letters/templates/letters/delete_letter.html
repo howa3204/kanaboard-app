@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap mr-auto">
+      <div class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+        <span style="color: #335EEA" class="font-weight-bolder">Letters of Recommendation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-custom gutter-b example example-compact">
+          <div class="card-body">
+
+            <p class="font-weight-bolder mb-3">Are you sure you want to delete the following letter?</p>
+
+            <div class="mb-1">
+              <span class="font-weight-bolder">Letter Type:</span><span> {{ letter.letter_type}}</span>
+            </div>
+
+            <div class="mb-1">
+              <span class="font-weight-bolder">School Association:</span><span> {{ letter.school_association }}</span>
+            </div>
+
+            <div class="mb-4">
+              <span class="font-weight-bolder">Author Name:</span><span> {{ letter.author_first_name }} {{ letter.author_last_name }}</span>
+            </div>
+
+            <form action="{% url 'letters:delete_letter' letter.id %}" method="POST">
+            {% csrf_token %}
+              <input class="btn btn-light-danger" type="submit" name="Submit" value="Delete">
+              <a class="btn btn-light-primary" href="{% url 'letters:letters' %}">Cancel</a>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

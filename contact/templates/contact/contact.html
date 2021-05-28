@@ -1,0 +1,62 @@
+{% extends 'account_settings/settings.html' %}
+
+{% block content %}
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="flex-row-fluid">
+          <div class="card card-custom">
+            <div class="card-header py-3">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Contact</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">Have a question, need help, or find a bug? Let us know and we'll get back to you shortly.</span>
+              </div>
+            </div>
+            <form action="{% url 'contact:contact' %}" method="POST">
+            {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Your Email:<span class="text-danger"> *</span></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <input type="email" name="reply_to" class="form-control form-control-lg form-control-solid" required="true">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Subject:<span class="text-danger"> *</span></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="input-group input-group-lg input-group-solid">
+                      <input type="text" name="subject" class="form-control form-control-lg form-control-solid" required="true">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Message:<span class="text-danger"> *</span></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <textarea type="text" name="body" rows="6" class="form-control form-control-lg form-control-solid" required="true"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label"></label>
+                  <div class="col-lg-9 col-xl-6">
+                    <button class="btn btn-sm btn-light-primary font-weight-bold">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          {% for message in messages %}
+            <div class="alert alert-success alert-dismissable mt-3 mb-3 text-center" data-dismiss="alert" aria-label="close" class="close" type="submit" value="Login">{{ message }}</div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

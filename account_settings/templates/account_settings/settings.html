@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block settings %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    {% with request.resolver_match.url_name as url_name %}
+      <div class="d-flex align-items-center flex-wrap">
+        <a href="{% url 'user_profile:profile' %}" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 {% if url_name == 'profile' %}active{% endif %}{% if url_name == 'update_profile' %}active{% endif %}">
+          <span class="font-weight-bolder">Profile</span>
+        </a>
+        <a href="{% url 'account_settings:account' %}" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 {% if url_name == 'account' %}active{% endif %}{% if url_name == 'delete_account' %}active{% endif %}{% if url_name == 'password_change' %}active{% endif %}{% if url_name == 'password_change_done' %}active{% endif %}">
+          <span class="font-weight-bolder">Account</span>
+        </a>
+        <a href="{% url 'billing:billing' %}" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 {% if url_name == 'billing' %}active{% endif %}">
+          <span class="font-weight-bolder">Billing</span>
+        </a>
+        <a href="{% url 'contact:contact' %}" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 {% if url_name == 'contact' %}active{% endif %}">
+          <span class="font-weight-bolder">Contact</span>
+        </a>
+      </div>
+    {% endwith %}
+  </div>
+</div>
+
+{% endblock settings %}
+
+{% block content %}
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap">
+      <div class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+        <span style="color: #335EEA" class="font-weight-bolder">Activities</span>
+      </div>
+    </div>
+    <div class="d-flex align-items-end">
+      <div class="dropdown dropdown-inline" data-toggle="tooltip" data-placement="left">
+        <a style="color: #335EEA" href="{% url 'activities:add_activity' %}" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bolder font-size-sm">Add Activity</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card card-custom">
+            <div class="card-body">
+              <table class="datatable datatable-bordered datatable-head-custom activities_datatable_search_status activities_datatable_search_type" id="activities_datatable">
+                <thead>
+                  <tr>
+                    <th title="Field #1">Activity</th>
+                    <th title="Field #2">Experience Type</th>
+                    <th title="Field #3">Hours</th>
+                    <th title="Field #4">Start Date</th>
+                    <th title="Field #5">End Date</th>
+                    <th title="Field #5">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for activity in activities %}
+                    <tr>
+                      <td>
+                        <div class="">
+                          <a href="{% url 'activities:update_activity' activity.id %}">{{ activity.experience_name}}</a>
+                        </div>
+                        <div class="text-muted">
+                          {{ activity.organization_name }}
+                        </div>
+                      </td>
+                      <td class="">
+                        {{ activity.experience_type }}
+                      </td>
+                      <td>
+                        {{ activity.total_hours }}
+                      </td>
+                      <td class="">
+                        <div class="label label-lg label-inline label-light-success">
+                          {{ activity.start_date }}
+                        </div>
+                      </td>
+                      <td class="">
+                        {% if activity.end_date %}
+                        <div class="label label-lg label-inline label-light-danger">
+                          {{ activity.end_date }}
+                        </div>
+                        {% endif %}
+
+                        {% if activity.end_date == None %}<a href="{% url 'activities:update_activity' activity.id %}"><u>Add End Date</u></a>{% endif %}
+                      </td>
+                      <td>
+                        <a href="{% url 'activities:update_activity' activity.id %}" class="" title="Edit details">
+                          Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'activities:delete_activity' activity.id %}" class="" title="Delete">Delete</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+

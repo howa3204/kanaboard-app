@@ -1,0 +1,33 @@
+{% extends 'account_settings/settings.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="flex-row-fluid">
+      <div class="card card-custom">
+        <div class="card-header py-3">
+          <div class="card-title align-items-start flex-column">
+            <h3 class="card-label font-weight-bolder text-dark">Billing</h3>
+            <span class="text-muted font-weight-bold font-size-sm mt-1">Manage your subscription</span>
+          </div>
+        </div>
+      <div class="card-body">
+        <div id="billflow-embed"></div>
+
+          {{ user_email|json_script:"user_email" }}
+          {{ email_hash|json_script:"email_hash" }}
+
+          <script>
+            const user_email = JSON.parse(document.getElementById('user_email').textContent);
+            const email_hash = JSON.parse(document.getElementById('email_hash').textContent);
+          </script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

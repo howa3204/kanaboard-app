@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+
+<ul class="menu-nav">
+  <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
+    <a href="javascript:;" class="menu-link menu-toggle">
+      <span class="menu-text">My Application</span>
+      <i class="menu-arrow"></i>
+    </a>
+  </li>
+</ul>
+
+{% endblock title %}
+
+{% block content %}
+
+<form action="" method="POST" class="form" autocomplete="off">
+{% csrf_token %}
+
+  <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+      <div class="d-flex align-items-center flex-wrap mr-auto">
+        <div class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+          <span style="color: #335EEA" class="font-weight-bolder">Coursework</span>
+        </div>
+      </div>
+      <input style="color: #335EEA" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bolder font-size-sm my-1 mr-3" type='submit' value="Save Changes">
+      <a style="color: #335EEA" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bolder font-size-sm" href="{% url 'coursework:coursework' %}">Cancel</a>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-custom gutter-b example example-compact">
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Academic Year <span class="text-danger">*</span></label>
+                    {% render_field form.academic_year class="input input-group input-group-solid form-control" type="text" placeholder="Academic Year" %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Academic Term <span class="text-danger">*</span></label>
+                    {% render_field form.academic_term class="input input-group input-group-solid form-control" type="text" %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Year in School <span class="text-danger">*</span></label>
+                    {% render_field form.school_year class="input input-group input-group-solid form-control" type="text" %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label class="mb-1">Course Number</label>
+                    {% render_field form.course_number class="input input-group input-group-solid form-control" placeholder="Course Number" type="text" %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label class="mb-1">Course Name <span class="text-danger">*</span></label>
+                    {% render_field form.course_name class="input input-group input-group-solid form-control" placeholder="Course Name" type="text" %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Course Classification <span class="text-danger">*</span></label>
+                    {% render_field form.course_classification class="input input-group input-group-solid form-control" placeholder="Course Classification" type="text" %}
+                    {% if form.bio_biochem.errors %}
+                      <div class="text-danger mt-2">Please enter a score between 118 and 132.</div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Credit Hours <span class="text-danger">*</span></label>
+                    {% render_field form.credit_hours class="input input-group input-group-solid form-control" placeholder="Credit Hours" type="text" %}
+                    {% if form.chem_physics.errors %}
+                      <div class="text-danger mt-2">Please enter a score between 118 and 132.</div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Transcript Grade <span class="text-danger">*</span></label>
+                    {% render_field form.transcript_grade class="input input-group input-group-solid form-control" placeholder="Transcript Grade" type="text" %}
+                    {% if form.psych_soc.errors %}
+                      <div class="text-danger mt-2">Please enter a score between 118 and 132.</div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label>Did the course include a lab section? <span class="text-danger">*</span></label>
+                    {% render_field form.include_lab class="input input-group input-group-solid form-control" type="text" %}
+                    {% if form.cars.errors %}
+                    <div class="text-danger mt-2">Please enter a score between 118 and 132.</div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div>
+                  <hr class="mt-4 mb-5">
+                  <br>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

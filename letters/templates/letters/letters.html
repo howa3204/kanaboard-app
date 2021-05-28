@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap">
+      <div class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+        <span style="color: #335EEA" class="font-weight-bolder">Letters of Recommendation</span>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="dropdown dropdown-inline" data-toggle="tooltip" data-placement="left">
+        <a style="color: #335EEA" href="{% url 'letters:add_letter' %}" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bolder font-size-sm">Add Letter</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+   <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card card-custom">
+            <div class="card-body">
+              <table class="datatable datatable-bordered datatable-head-custom letters_datatable_search_status letters_datatable_search_type" id="letters_datatable">
+                <thead>
+                  <tr>
+                    <th title="Field #1">Letter Type</th>
+                    <th title="Field #2">School Association</th>
+                    <th title="Field #3">Author</th>
+                    <th title="Field #4">Organization</th>
+                    <th title="Field #5">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for letter in letters %}
+                    <tr>
+                      <td><a href="{% url 'letters:update_letter' letter.id %}">{{ letter.letter_type}}</a>
+                      </td>
+                      <td class="">{{ letter.school_association }}
+                      </td>
+                      <td class="">{{ letter.author_first_name }} {{ letter.author_last_name }}
+                      </td>
+                      <td>{{ letter.organization_name }}
+                      </td>
+                      <td>
+                      <a href="{% url 'letters:update_letter' letter.id %}" class="" title="Edit details">
+                        Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="{% url 'letters:delete_letter' letter.id %}" class="" title="Delete">Delete</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

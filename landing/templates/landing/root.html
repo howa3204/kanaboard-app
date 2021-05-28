@@ -1,0 +1,168 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'landing/favicon/favicon.png' %}" type="image/x-icon" />
+
+    <!-- Map CSS -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{% static 'landing/css/libs.bundle.css' %}" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'landing/css/theme.bundle.css' %}" />
+
+    <!--Feather Icons-->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Title -->
+    <title>Kanaboard</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'landing:home' %}">
+          <h1 class="fw-bolder">Kanaboard</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fe fe-x"></i>
+          </button>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" id="navbarLandings" href="{% url 'landing:about' %}">
+                About
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="navbarLandings" href="{% url 'landing:home' %}#faqs">
+                FAQs
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="navbarLandings" href="{% url 'landing:home' %}#pricing">
+                Pricing
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="navbarLandings" href="{% url 'authentication:login' %}">
+                Sign In
+              </a>
+            </li>
+          </ul>
+          <a class="navbar-btn btn btn-sm btn-primary lift ms-auto" href="{% url 'registration:register' %}" target="_blank">
+            Sign Up
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    {% block body %}
+
+    {% endblock body %}
+
+    <footer class="py-8 py-md-11 bg-gray-200">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <h3><a href="{% url 'landing:home' %}" class="fw-bolder text-primary">Kanaboard</a></h3>
+
+            <!--<p class="text-gray-700 text-muted mb-2">
+            </p>-->
+
+            <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
+              <li class="list-inline-item list-social-item me-3">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/kanaboard/" class="text-decoration-none">
+                  <img src="{% static 'landing/img/icons/social/instagram.svg' %}" class="list-social-icon" alt="...">
+                </a>
+              </li>
+              <li class="list-inline-item list-social-item me-3">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/Kanaboard-110252187905669" class="text-decoration-none">
+                  <img src="{% static 'landing/img/icons/social/facebook.svg' %}" class="list-social-icon" alt="...">
+                </a>
+              </li>
+              <li class="list-inline-item list-social-item me-3">
+                <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/kanaboard_app" class="text-decoration-none">
+                  <img src="{% static 'landing/img/icons/social/twitter.svg' %}" class="list-social-icon" alt="...">
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <h6 class="fw-bolder text-uppercase text-gray-700">Company</h6>
+            <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+              <li class="mb-3">
+                <a href="{% url 'landing:about' %}" class="text-reset">About Us</a>
+              </li>
+              <li class="mb-3">
+                <a href="mailto:hello@kanaboard.com" class="text-reset">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <h6 class="fw-bolder text-uppercase text-gray-700">Account</h6>
+            <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+              <li class="mb-3">
+                <a href="{% url 'authentication:login' %}" class="text-reset">Sign In</a>
+              </li>
+              <li class="mb-3">
+                <a href="{% url 'registration:register' %}" class="text-reset">Sign Up</a>
+              </li>
+              <li class="mb-3">
+                <a href="mailto:support@kanaboard.com" class="text-reset">Support</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-2">
+            <h6 class="fw-bolder text-uppercase text-gray-700">Legal</h6>
+            <ul class="list-unstyled text-muted mb-0">
+              <li class="mb-3">
+                <a href="{% url 'landing:privacy' %}" class="text-reset">Privacy</a>
+              </li>
+              <li class="mb-3">
+                <a href="{% url 'landing:terms' %}" class="text-reset">Terms</a>
+              </li>
+              <li>
+                <a href="{% url 'landing:refund' %}" class="text-reset">Refund</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <div class="container pt-8">
+        <div class="row">
+          <h6 class="fw-bolder text-uppercase text-muted">Copyright &copy; Kanaboard, LLC 2021</h6>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <!-- Map JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static 'landing/js/vendor.bundle.js' %}"></script>
+
+    <!-- Theme JS -->
+    <script src="{% static 'landing/js/theme.bundle.js' %}"></script>
+
+    <script>
+      feather.replace()
+    </script>
+
+  </body>
+</html>

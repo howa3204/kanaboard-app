@@ -1,0 +1,155 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap">
+      <a href="{% url 'activities:activities' %}" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+        <span style="color: #335EEA" class="font-weight-bolder">Dashboard</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card-header border-0 pt-7">
+            <div class="card-title align-items-start flex-column">
+              <span class="card-label font-weight-bolder font-size-h4">AMCAS GPA</span>
+              {% if amcas_gpa %}
+              <div class="text-primary font-weight-bold label label-lg label-light-primary label-inline mt-3">Cumulative: {{ amcas_gpa }}</div><span class="text-success font-weight-bold label label-lg label-light-success label-inline mt-3">BCMP: {% if bcpm_gpa %}{{ bcpm_gpa }}{% endif %}{% if bcpm_gpa == None %}0.0{% endif %}</span>
+              {% endif %}
+              {% if amcas_gpa == None %}<a class="text-primary mt-2" href="{% url 'coursework:add_course' %}">Add a Course to see your GPA</a>{% endif %}
+            </div>
+            <div class="card-toolbar">
+              <ul class="nav nav-pills nav-pills-sm nav-dark">
+                <li class="nav-item ml-0">
+                  <a class="nav-link py-2 px-4 active font-weight-bolder font-size-sm" data-toggle="tab" href="#kt_tab_table_1_2">Cumulative GPA</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link py-2 px-4 font-weight-bolder font-size-sm" data-toggle="tab" href="#kt_tab_table_1_3">BCPM GPA</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-body pt-1 pb-4">
+            <div class="tab-content mt-5" id="myTabTable1">
+
+              <!--begin::Cumulative GPA Tab Pane-->
+              <div class="tab-pane fade show active" id="kt_tab_table_1_2" role="tabpanel" aria-labelledby="kt_tab_table_1_2">
+                <div id="chart_1"></div>
+                  {{ cumulative_year|json_script:"cumulative_year" }}
+                  {{ cumulative_gpa_trend|json_script:"cumulative_gpa_trend" }}
+                <script>
+                  var cumulative_year = JSON.parse(document.getElementById('cumulative_year').textContent);
+                  var cumulative_gpa_trend = JSON.parse(document.getElementById('cumulative_gpa_trend').textContent);
+                </script>
+              </div>
+
+              <!--begin::BCPM GPA Tab Pane-->
+              <div class="tab-pane fade" id="kt_tab_table_1_3" role="tabpanel" aria-labelledby="kt_tab_table_1_3">
+                <div id="chart_4"></div>
+                  {{ bcpm_year|json_script:"bcpm_year" }}
+                  {{ bcpm_gpa_trend|json_script:"bcpm_gpa_trend" }}
+                <script>
+                  var bcpm_year = JSON.parse(document.getElementById('bcpm_year').textContent);
+                  var bcpm_gpa_trend = JSON.parse(document.getElementById('bcpm_gpa_trend').textContent);
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card-header border-0 pt-7">
+            <h3 class="card-title align-items-start flex-column">
+              <span class="card-label font-weight-bolder font-size-h4">Activity Hours Quick Add</span>
+            </h3>
+          </div>
+          <div class="card-body pt-2">
+            <form action="" method="POST">
+            {% csrf_token %}
+
+              <div class="form-group">
+                <label class="font-weight-bold">Select Activity</label>
+                {% render_field form.experience_name class="input input input-group input-group-solid form-control" placeholder="Experience Name" type="text" %}
+              </div>
+
+              <div class="form-group">
+                <label class="font-weight-bold">Hours Completed</label>
+                {% render_field form.hours class="input input-group input-group-solid form-control" placeholder="Hours" type="text" %}
+              </div>
+
+              <input class="btn btn-block btn-light-primary font-weight-bolder" type='submit' name="Submit">
+
+            </form>
+            <h3 class="card-title align-items-start flex-column mt-4 mb-4">
+              <span class="card-label font-weight-bolder font-size-h4">Add New Activity</span>
+            </h3>
+            <a href="{% url 'activities:add_activity' %}" class="btn btn-block btn-light-primary font-weight-bolder" type='submit' name="Submit" value="Add New Activity">Add New Activity</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-lg-8">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card-header border-0 pt-7">
+            <div class="card-title align-items-start flex-column">
+              <span class="card-label font-weight-bolder font-size-h4">MCAT Score: {% if mcat_score %}{{ mcat_score }}{% endif %}</span>
+              {% if mcat_score %}<div class="text-success font-weight-bold label label-lg label-light-success label-inline mt-3">{{ mcat_type }}</div>{% endif %}{% if mcat_score == None %}<a class="text-primary mt-2" href="{% url 'mcat:add_mcat' %}">Add an MCAT Score</a>{% endif %}
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="chart_3"></div>
+            {{ mcat_data|json_script:"mcat_data" }}
+            <script>
+              var mcat_data = JSON.parse(document.getElementById('mcat_data').textContent);
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card-header border-0 pt-7">
+            <h3 class="card-title align-items-start flex-column">
+              <span class="card-label font-weight-bolder font-size-h4">My Activities</span>
+            </h3>
+          </div>
+          <div class="card-body pt-1">
+            {% for activity in activities %}
+              <div class="d-flex flex-center mb-4">
+                <div class="d-flex flex-column flex-grow-1 mr-6">
+                  <div class="text-dark-75 font-weight-bolder font-size-lg mb-1">{{ activity.experience_name }}</div>
+                  <div class="text-muted font-size-lg mb-1">{{ activity.experience_type }}</div>
+                </div>
+                <h3 class="text-success font-weight-bolder mb-1 label label-lg label-inline label-light-success">{{ activity.total_hours }}</h3>
+              </div>
+              {% empty %}
+              <a class="text-primary font-size-h4" href="{% url 'activities:add_activity' %}">Add an activity to see your completed hours</a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

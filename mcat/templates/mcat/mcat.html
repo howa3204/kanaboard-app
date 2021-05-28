@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+<ul class="menu-nav">
+  <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
+    <a href="javascript:;" class="menu-link menu-toggle">
+      <span class="menu-text">My Application</span>
+      <i class="menu-arrow"></i>
+    </a>
+  </li>
+</ul>
+
+{% endblock title %}
+
+{% block content %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap">
+      <a href="{% url 'mcat:mcat' %}" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+        <span style="color: #335EEA" class="font-weight-bolder">MCAT</span>
+      </a>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="dropdown dropdown-inline" data-toggle="tooltip" data-placement="left">
+        <a style="color: #335EEA" href="{% url 'mcat:add_mcat' %}" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bolder font-size-sm">Add MCAT</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card card-custom">
+            <div class="card-body">
+              <table class="datatable datatable-bordered datatable-head-custom mcat_datatable_search_status mcat_datatable_search_type" id="mcat_datatable">
+                <thead>
+                  <tr>
+                    <th title="Field #1">Test</th>
+                    <th title="Field #2">Date</th>
+                    <th title="Field #3">Bio & Biochem</th>
+                    <th title="Field #4">Chem & Phys</th>
+                    <th title="Field #4">Psych & Soc</th>
+                    <th title="Field #4">CARS</th>
+                    <th title="Field #4">Total Score</th>
+                    <th title="Field #5">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for mcat in mcat %}
+                    <tr>
+                      <td>
+                        <div class="text-primary">{{ mcat.test_company }}</div>
+                        <div class="text-muted">{{ mcat.test_type }}</div>
+                        {% if mcat.test_name %}
+                        <div class=""><em>{{ mcat.test_name }}</em></div>
+                        {% endif %}
+                      </td>
+                      <td class="label label-lg label-inline label-light-primary">{{ mcat.test_date }}</td>
+                      <td>{{ mcat.bio_biochem }}</td>
+                      <td class="text-right">{{ mcat.chem_physics }}</td>
+                      <td class="text-right">{{ mcat.psych_soc }}</td>
+                      <td class="text-right">{{ mcat.cars }}</td>
+                      <td class="text-right">
+                        <div class="label label-lg label-light-success label-inline font-weight-bolder">{{ mcat.mcat_score }}</div>
+                      </td>
+                      <td>
+                        <a href="{% url 'mcat:update_mcat' mcat.id %}" class="" title="Edit details">
+                          Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'mcat:delete_mcat' mcat.id %}" class="" title="Delete">Delete</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

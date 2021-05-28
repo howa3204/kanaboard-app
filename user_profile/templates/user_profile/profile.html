@@ -1,0 +1,54 @@
+{% extends 'account_settings/settings.html' %}
+
+{% block content %}
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="flex-row-fluid">
+          <div class="card card-custom">
+            <div class="card-header py-3">
+              <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Profile</h3>
+                <span class="text-muted font-weight-bold font-size-sm mt-1">Update your profile</span>
+              </div>
+              <div class="card-toolbar">
+                <a href="{% url 'user_profile:update_profile' %}" class="btn btn-sm btn-light-primary font-weight-bold mr-2">Update Profile</a>
+              </div>
+            </div>
+              <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Name</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="form-control form-control-lg form-control-solid">{{ request.user.first_name }}</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Username</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="input-group input-group-lg input-group-solid">
+                      <div class="form-control form-control-lg form-control-solid">{{ request.user.username }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
+                  <div class="col-lg-9 col-xl-6">
+                    <div class="form-control form-control-lg form-control-solid">{{ request.user.email }}</div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        {% for message in messages %}
+          <div class="alert alert-success alert-dismissable mt-3 mb-3 text-center" data-dismiss="alert" aria-label="close" class="close" type="submit" value="Login">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

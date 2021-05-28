@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+
+<ul class="menu-nav">
+  <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
+    <a href="javascript:;" class="menu-link menu-toggle">
+      <span class="menu-text">My Application</span>
+      <i class="menu-arrow"></i>
+    </a>
+  </li>
+</ul>
+
+{% endblock title %}
+
+{% block content %}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <div class="d-flex align-items-center flex-wrap">
+      <div class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3 active">
+        <span style="color: #335EEA" class="font-weight-bolder">Coursework</span>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="dropdown dropdown-inline" data-toggle="tooltip" data-placement="left">
+        <a style="color: #335EEA" href="{% url 'coursework:add_course' %}" class="btn btn-fixed-height btn-white btn-hover-primary font-weight-bolder font-size-sm">Add Course</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card card-custom">
+            <div class="card-body">
+              <table class="datatable datatable-bordered datatable-head-custom coursework_datatable_search_status coursework_datatable_search_type" id="coursework_datatable">
+                <thead>
+                  <tr>
+                    <th title="Field #1">Course Name</th>
+                    <th title="Field #2">Year</th>
+                    <th title="Field #3">Course Number</th>
+                    <th title="Field #4">Academic Term</th>
+                    <th title="Field #5">Credit Hours</th>
+                    <th title="Field #5">Grade</th>
+                    <th title="Field #5">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for course in coursework %}
+                    <tr>
+                      <td>
+                        <a href="{% url 'coursework:update_course' course.id %}">{{ course.course_name }}</a>
+                        <div class="text-muted">{{ course.course_classification}}</div>
+                      </td>
+                      <td class="">{{ course.academic_year }}</td>
+                      <td class="">{{ course.course_number }}</td>
+                      <td>{{ course.academic_term }}</td>
+                      <td class="text-right">{{ course.credit_hours }}</td>
+                      <td class="text-right">
+                        <div class="label label-lg label-inline label-light-primary">{{ course.transcript_grade }}</div>
+                      </td>
+                      <td>
+                        <a href="{% url 'coursework:update_course' course.id %}" class="" title="Edit details">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'coursework:delete_course' course.id %}" class="" title="Delete">Delete</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
