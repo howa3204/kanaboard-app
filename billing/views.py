@@ -29,9 +29,6 @@ def billing(request):
     digestmod=hashlib.sha256 # HASH FUNCTION
     ).hexdigest() # PASS THIS TO FRONT-END
 
-    print(user_email)
-    print(email_hash)
-
     context = {
         'user_email':user_email,
         'email_hash':email_hash,
