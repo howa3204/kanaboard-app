@@ -1,5 +1,5 @@
-        window.billflowSettings = {
-        "billing_page_id": "zRN7i4pbJvnsnO6UqTnH",
+    window.billflowSettings = {
+        "billing_page_id": "YEcTUAL2HsRlE18ze5lW",
         "email": user_email,
         "hash": email_hash,
         "loader": "1"
