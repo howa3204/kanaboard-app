@@ -133,11 +133,8 @@ def stripe_webhook(request):
 
         # Perform checks.
         now = datetime.datetime.fromtimestamp(int(invoice.get('created')))
-        print(now)
         trial_start = datetime.datetime.fromtimestamp(int(customer.created))
-        print(trial_start)
         days_since = (now - trial_start).days
-        print(days_since)
 
         # Cancel subscription if 14 days since subscription start and no billing details added.
         if days_since < 15 :
