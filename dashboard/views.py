@@ -103,20 +103,6 @@ def dashboard(request):
     except ZeroDivisionError:
         amcas_gpa = None
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     # Display cumulative gpa trend.
 
     # Display cumulative GPA school year on x-axis.
@@ -236,25 +222,6 @@ def dashboard(request):
 
     cumulative_gpa_trend = [x for x in trend if x is not None]
 
-    print("Cumluative Year:")
-    print(cumulative_year)
-
-    print("Cumulative GPA Trend:")
-    print(cumulative_gpa_trend)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     # Display BCPM gpa trend.
 
     bcpm_year = []
@@ -371,27 +338,6 @@ def dashboard(request):
     trend = bcpm_gpa_trend.values()
 
     bcpm_gpa_trend = [x for x in trend if x is not None]
-
-    print("BCPM Year:")
-    print(bcpm_year)
-
-    print("BCPM GPA Trend:")
-    print(bcpm_gpa_trend)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     # AMCAS BCPM (Science) GPA Calculator
     bcpm_quality_points = int()
