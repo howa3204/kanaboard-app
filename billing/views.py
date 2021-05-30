@@ -22,6 +22,7 @@ from .models import StripeCustomer
 @login_required(login_url='authentication:login')
 def billing(request):
     billflow_secret = settings.BILLFLOW_SECRET
+    billing_page_id = settings.BILLING_PAGE_ID
     user_email = request.user.email
     email_hash = hmac.new(
     billflow_secret.encode('ascii'), # SECRET KEY (KEEP SAFE!)
@@ -32,6 +33,7 @@ def billing(request):
     context = {
         'user_email':user_email,
         'email_hash':email_hash,
+        'billing_page_id':billing_page_id,
     }
     return render(request, 'billing/billing.html', context)
 
