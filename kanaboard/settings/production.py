@@ -31,7 +31,7 @@ STATICFILES_DIRS = (
 # Stripe Keys
 stripe.api_key = os.getenv('STRIPE_API_KEY')
 STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET')
-STRIPE_TRIAL = os.getenv('STRIPE_TRIAL')
+STRIPE_PLAN = os.getenv('STRIPE_PLAN')
 
 # Billflow Key
 BILLFLOW_SECRET = os.getenv('BILLFLOW_SECRET')
