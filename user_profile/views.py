@@ -41,11 +41,11 @@ def update_profile(request):
             if new_email != old_email:
 
                 # Update Stripe customer email address.
-                stripe_customer = StripeCustomer.objects.get(owner=request.user)
-                stripe_customer_id = stripe_customer.stripe_customer_id
+                customer = StripeCustomer.objects.get(owner=request.user)
+                customer_id = customer.customer_id
 
                 stripe.Customer.modify(
-                    stripe_customer_id,
+                    customer_id,
                     email = new_email,
                 )
 
