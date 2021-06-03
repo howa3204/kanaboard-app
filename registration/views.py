@@ -38,7 +38,7 @@ def register_page(request):
                     items = [
                         {"plan": settings.STRIPE_PLAN},
                     ],
-                    trial_period_days = 14,
+                    trial_period_days = 4,
                     )
 
                 # Create Profile instance for new user.
