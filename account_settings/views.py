@@ -49,7 +49,7 @@ def delete_account(request):
 
             # Email variables.
             subject = 'Account Deletion'
-            body = 'Hi ' + request.user.first_name + ',\n' + '\n' + "We're confirming that your Kanaboard account with username " + request.user.username + ' and email ' + request.user.email + ' has been deleted. You will not be billed anymore. Thanks for using Kanaboard.' + '\n' + '\n' + 'Best,' + '\n' + 'The Kanaboard Team'
+            body = 'Hi ' + request.user.first_name + ',\n' + '\n' + "We're confirming that your Kanaboard account with username " + request.user.username + ' and email ' + request.user.email + ' has been deleted. Thanks for using Kanaboard!' + '\n' + '\n' + 'Best,' + '\n' + 'The Kanaboard Team'
 
             # Email Account Deletion message.
             email = EmailMessage(

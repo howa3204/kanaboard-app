@@ -111,7 +111,7 @@ def stripe_webhook(request):
 
         # Email change confirmation message.
         subject = 'Subscription Cancellation'
-        body = 'Hi ' + user.first_name + ',\n' + '\n' + "We're confirming that your Kanaboard subscription has been cancelled. You will not be billed any more." + '\n' + '\n' + "If you didn't make this change, please contact as soon as possible by replying to this email." + '\n' + '\n' + 'Best,' + '\n' + 'The Kanaboard Team'
+        body = 'Hi ' + user.first_name + ',\n' + '\n' + "We're confirming that your Kanaboard subscription has been cancelled." + '\n' + '\n' + "If you didn't make this change, please contact as soon as possible by replying to this email." + '\n' + '\n' + 'Best,' + '\n' + 'The Kanaboard Team'
 
         email = EmailMessage(
             subject,
