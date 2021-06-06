@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -24,32 +25,32 @@ class Activity(models.Model):
         ('Research/Lab', 'Research/Lab'),
         ('Teaching/Tutoring/Teaching Assistant', 'Teaching/Tutoring/Teaching Assistant'),
     )
-    experience_type = models.CharField(max_length=200, choices=TYPE, blank=True)
-    experience_name = models.CharField(max_length=200, null=True, blank=True)
-    organization_name = models.CharField(max_length=200, null=True, blank=True)
-    start_date = models.CharField(max_length=200, null=True, blank=True)
-    end_date = models.CharField(max_length=200, null=True, blank=True)
-    total_hours = models.FloatField(null=True, blank=True)
+    experience_type = models.CharField(max_length=50, choices=TYPE)
+    experience_name = models.CharField(max_length=100)
+    organization_name = models.CharField(max_length=100)
+    start_date = models.CharField(max_length=10)
+    end_date = models.CharField(max_length=10, blank=True)
+    total_hours = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(999999)])
     REPEATED = (
         ('Yes', 'Yes'),
         ('No', 'No'),
     )
-    repeated = models.CharField(max_length=200, choices=REPEATED, blank=True)
-    contact_first_name = models.CharField(max_length=200, null=True, blank=True)
-    contact_last_name = models.CharField(max_length=200, null=True, blank=True)
-    contact_title = models.CharField(max_length=200, null=True, blank=True)
-    contact_email = models.EmailField(max_length=200, null=True, blank=True)
-    contact_phone = models.CharField(max_length=200, null=True, blank=True)
-    city = models.CharField(max_length=200, null=True, blank=True)
-    country = models.CharField(max_length=200, null=True, blank=True)
-    experience_description = models.TextField(max_length=700, null=True, blank=True)
+    repeated = models.CharField(max_length=3, choices=REPEATED, blank=True)
+    contact_first_name = models.CharField(max_length=50, blank=True)
+    contact_last_name = models.CharField(max_length=50, blank=True)
+    contact_title = models.CharField(max_length=50, blank=True)
+    contact_email = models.EmailField(max_length=254, null=True, blank=True)
+    contact_phone = models.CharField(max_length=20, blank=True)
+    city = models.CharField(max_length=60, blank=True)
+    country = models.CharField(max_length=60, blank=True)
+    experience_description = models.TextField(max_length=700, blank=True)
     MEANINGFUL = (
         ('Yes', 'Yes'),
         ('No', 'No'),
     )
-    most_meaningful = models.CharField(max_length=200, choices=MEANINGFUL, blank=True)
-    most_meaningful_summary = models.TextField(max_length=1325, null=True, blank=True)
-    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    most_meaningful = models.CharField(max_length=3, choices=MEANINGFUL, blank=True)
+    most_meaningful_summary = models.TextField(max_length=1325, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):

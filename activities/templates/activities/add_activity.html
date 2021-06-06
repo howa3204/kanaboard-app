@@ -55,6 +55,7 @@
                   <div class="form-group">
                     <label>Total Hours <span class="text-danger">*</span></label>
                     {% render_field form.total_hours class="form-control input input-group input-group-solid" placeholder="Total Hours" type="text" %}
+                    <p class="text-danger mt-2">{{ form.total_hours.errors.as_text }}</p>
                   </div>
                 </div>
 
