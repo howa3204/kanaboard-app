@@ -17,13 +17,13 @@ class MCAT(models.Model):
         ('The Princeton Review', 'The Princeton Review'),
         ('Other', 'Other'),
         )
-    test_company = models.CharField(max_length=40, choices=COMPANY)
+    test_company = models.CharField(max_length=20, choices=COMPANY)
     TEST = (
         ('Official', 'Official'),
         ('Practice', 'Practice'),
         )
-    test_type = models.CharField(max_length=10, choices=TEST)
-    test_name = models.CharField(max_length=80, blank=True, null=True)
+    test_type = models.CharField(max_length=8, choices=TEST)
+    test_name = models.CharField(max_length=80, blank=True)
     bio_biochem = models.PositiveIntegerField(validators=[MinValueValidator(118), MaxValueValidator(132)])
     chem_physics= models.PositiveIntegerField(validators=[MinValueValidator(118), MaxValueValidator(132)])
     psych_soc = models.PositiveIntegerField(validators=[MinValueValidator(118), MaxValueValidator(132)])
