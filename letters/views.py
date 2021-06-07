@@ -52,7 +52,7 @@ def update_letter(request, letter_id):
             return redirect('/letters/')
 
     context = {'form':form}
-    return render(request, 'letters/letter_form.html', context)
+    return render(request, 'letters/add_letter.html', context)
 
 @login_required(login_url='authentication:login')
 @user_passes_test(subscription_check, login_url='authentication:sorry')
