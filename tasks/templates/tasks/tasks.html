@@ -100,7 +100,11 @@
                   7
                   {% endif %}
                 </td>
-                <td>{{ task.due_date }}</td>
+                <td>
+                  {{ task.due_date }}
+
+                  {% if task.due_date == '' %}<a href="{% url 'tasks:update_task' task.id %}"><u>Add Due Date</u></a>{% endif %}
+                </td>
                 <td class="text-right">
                   {% if task.priority == 'Urgent' %}
                   1

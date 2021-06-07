@@ -43,7 +43,10 @@
                     <tr>
                       <td><a href="{% url 'letters:update_letter' letter.id %}">{{ letter.letter_type}}</a>
                       </td>
-                      <td class="">{{ letter.school_association }}
+                      <td class="">
+                        {{ letter.school_association }}
+
+                        {% if letter.school_association == '' %}<a href="{% url 'letters:update_letter' letter.id %}"><u>Add School</u></a>{% endif %}
                       </td>
                       <td class="">{{ letter.author_first_name }} {{ letter.author_last_name }}
                       </td>

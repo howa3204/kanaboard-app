@@ -40,32 +40,32 @@
                   {% for activity in activities %}
                     <tr>
                       <td>
-                        <div class="">
+                        <div>
                           <a href="{% url 'activities:update_activity' activity.id %}">{{ activity.experience_name}}</a>
                         </div>
                         <div class="text-muted">
                           {{ activity.organization_name }}
                         </div>
                       </td>
-                      <td class="">
+                      <td>
                         {{ activity.experience_type }}
                       </td>
                       <td>
                         {{ activity.total_hours }}
                       </td>
-                      <td class="">
+                      <td>
                         <div class="label label-lg label-inline label-light-success">
                           {{ activity.start_date }}
                         </div>
                       </td>
-                      <td class="">
+                      <td>
                         {% if activity.end_date %}
                         <div class="label label-lg label-inline label-light-danger">
                           {{ activity.end_date }}
                         </div>
                         {% endif %}
 
-                        {% if activity.end_date == None %}<a href="{% url 'activities:update_activity' activity.id %}"><u>Add End Date</u></a>{% endif %}
+                        {% if activity.end_date == '' %}<a href="{% url 'activities:update_activity' activity.id %}"><u>Add End Date</u></a>{% endif %}
                       </td>
                       <td>
                         <a href="{% url 'activities:update_activity' activity.id %}" class="" title="Edit details">
