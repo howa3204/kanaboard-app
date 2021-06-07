@@ -17,7 +17,7 @@ class Course(models.Model):
         ('2012-2013', '2012-2013'),
         ('2011-2012', '2011-2012'),
     )
-    academic_year = models.CharField(max_length=200, choices=YEAR, blank=True)
+    academic_year = models.CharField(max_length=9, choices=YEAR)
     TERM = (
         ('Summer Semseter (Summer)', 'Summer Semseter (Summer)'),
         ('First Semester (Fall)', 'First Semester (Fall)'),
@@ -41,7 +41,7 @@ class Course(models.Model):
         ('Full Year Course - 4-1-4 / 4-4-1 System', 'Full Year Course - 4-1-4 / 4-4-1 System'),
         ('Other Term', 'Other Term'),
     )
-    academic_term = models.CharField(max_length=200, choices=TERM, blank=True)
+    academic_term = models.CharField(max_length=39, choices=TERM)
     SCHOOL_YEAR = (
         ('High School', 'High School'),
         ('Freshman', 'Freshman'),
@@ -51,9 +51,9 @@ class Course(models.Model):
         ('Postbaccalaureate Undergraduate', 'Postbaccalaureate Undergraduate'),
         ('Graduate', 'Gradutae'),
     )
-    school_year = models.CharField(max_length=200, choices=SCHOOL_YEAR, blank=True)
-    course_number = models.PositiveIntegerField(null=True, blank=True)
-    course_name = models.CharField(max_length=200, null=True, blank=True)
+    school_year = models.CharField(max_length=31, choices=SCHOOL_YEAR)
+    course_number = models.PositiveIntegerField()
+    course_name = models.CharField(max_length=100)
     CLASSIFICATION = (
         ('Behavioral & Social Sciences', 'Behavioral & Social Sciences'),
         ('Biology', 'Biology'),
@@ -76,8 +76,8 @@ class Course(models.Model):
         ('Physics', 'Physics'),
         ('Special Studies', 'Special Studies'),
     )
-    course_classification = models.CharField(max_length=200, choices=CLASSIFICATION, blank=True)
-    credit_hours = models.PositiveIntegerField(null=True, blank=True)
+    course_classification = models.CharField(max_length=32, choices=CLASSIFICATION)
+    credit_hours = models.PositiveIntegerField()
     GRADE = (
         ('A+', 'A+'),
         ('A', 'A'),
@@ -97,13 +97,13 @@ class Course(models.Model):
         ('DE', 'DE'),
         ('F', 'F'),
     )
-    transcript_grade = models.CharField(max_length=200, choices=GRADE, null=True, blank=True)
+    transcript_grade = models.CharField(max_length=2, choices=GRADE)
     LAB = (
         ('Lecture Only', 'Lecture Only'),
         ('Lab Only', 'Lab Only'),
         ('Combined Lecture and Lab', 'Combined Lecture and Lab'),
     )
-    include_lab = models.CharField(max_length=200, choices=LAB, blank=True)
+    include_lab = models.CharField(max_length=24, choices=LAB)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
