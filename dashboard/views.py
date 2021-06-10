@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from django.db.models import Q
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -22,7 +24,6 @@ def dashboard(request):
     activities = Activity.objects.filter(owner=request.user)
     bcpm_courses = Course.objects.filter(Q(course_classification='Biology') | Q(course_classification='Chemistry') | Q(course_classification='Math') | Q(course_classification='Physics'), owner=request.user)
 
-    # MCAT
     # Display highest official MCAT score on dashboard.
     # If no official MCAT score, display highest practice score.
 
@@ -31,7 +32,6 @@ def dashboard(request):
 
     official_score = None
     practice_score = None
-
     mcat_type = None
 
     try:
@@ -103,8 +103,6 @@ def dashboard(request):
     except ZeroDivisionError:
         amcas_gpa = None
 
-    # Display cumulative gpa trend.
-
     # Display cumulative GPA school year on x-axis.
     cumulative_year = []
 
@@ -114,230 +112,48 @@ def dashboard(request):
     cumulative_year = list(set(cumulative_year))
     cumulative_year.sort()
 
-    cumulative_gpa_trend = {
-        '2011-2012':None,
-        '2012-2013':None,
-        '2013-2014':None,
-        '2014-2015':None,
-        '2015-2016':None,
-        '2016-2017':None,
-        '2017-2018':None,
-        '2018-2019':None,
-        '2019-2020':None,
-        '2012-2021':None,
-        '2021-2022':None,
-    }
+    # Display cumulative GPA on y-axis.
+    years_dict = defaultdict(list)
 
     for course in courses:
-        if course.academic_year == '2011-2012':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2011-2012']=gpa
-        if course.academic_year == '2012-2013':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2012-2013']=gpa
-        if course.academic_year == '2013-2014':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2013-2014']=gpa
-        if course.academic_year == '2014-2015':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2014-2015']=gpa
-        if course.academic_year == '2015-2016':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2015-2016']=gpa
-        if course.academic_year == '2016-2017':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2016-2017']=gpa
-        if course.academic_year == '2017-2018':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2017-2018']=gpa
-        if course.academic_year == '2018-2019':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2018-2019']=gpa
-        if course.academic_year == '2019-2020':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2019-2020']=gpa
-        if course.academic_year == '2020-2021':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2020-2021']=gpa
-        if course.academic_year == '2021-2022':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            cumulative_gpa_trend['2021-2022']=gpa
+        credits = int()
+        credits += course.credit_hours
+        quality_points = int()
+        quality_points += (grades[course.transcript_grade]*course.credit_hours)
+        gpa = quality_points/credits
+        gpa = round(gpa, 2)
+        years_dict[course.academic_year].append(gpa)
 
-    trend = cumulative_gpa_trend.values()
+    for year,gpa in years_dict.items():
+        years_dict[year] = sum(gpa)/float(len(gpa))
 
-    cumulative_gpa_trend = [x for x in trend if x is not None]
+    cumulative_gpa_trend = [years_dict[key] for key in sorted(years_dict.keys())]
 
-    # Display BCPM gpa trend.
-
+    # Display science GPA school year on x-axis.
     bcpm_year = []
 
     for course in bcpm_courses:
         bcpm_year.append(course.academic_year)
 
+    bcpm_year = list(set(bcpm_year))
     bcpm_year.sort()
 
-    bcpm_gpa_trend = {
-        '2011-2012':None,
-        '2012-2013':None,
-        '2013-2014':None,
-        '2014-2015':None,
-        '2015-2016':None,
-        '2016-2017':None,
-        '2017-2018':None,
-        '2018-2019':None,
-        '2019-2020':None,
-        '2012-2021':None,
-        '2021-2022':None,
-    }
+    # Display cumulative GPA on y-axis.
+    bcpm_years_dict = defaultdict(list)
 
     for course in bcpm_courses:
-        if course.academic_year == '2011-2012':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2011-2012']=gpa
-        if course.academic_year == '2012-2013':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2012-2013']=gpa
-        if course.academic_year == '2013-2014':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2013-2014']=gpa
-        if course.academic_year == '2014-2015':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2014-2015']=gpa
-        if course.academic_year == '2015-2016':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2015-2016']=gpa
-        if course.academic_year == '2016-2017':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2016-2017']=gpa
-        if course.academic_year == '2017-2018':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2017-2018']=gpa
-        if course.academic_year == '2018-2019':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2018-2019']=gpa
-        if course.academic_year == '2019-2020':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2019-2020']=gpa
-        if course.academic_year == '2020-2021':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2020-2021']=gpa
-        if course.academic_year == '2021-2022':
-            credits = int()
-            credits += course.credit_hours
-            quality_points = int()
-            quality_points += (grades[course.transcript_grade]*course.credit_hours)
-            gpa = quality_points/credits
-            gpa = str(round(gpa, 2))
-            bcpm_gpa_trend['2021-2022']=gpa
+        credits = int()
+        credits += course.credit_hours
+        quality_points = int()
+        quality_points += (grades[course.transcript_grade]*course.credit_hours)
+        gpa = quality_points/credits
+        gpa = round(gpa, 2)
+        bcpm_years_dict[course.academic_year].append(gpa)
 
-    trend = bcpm_gpa_trend.values()
+    for year,gpa in bcpm_years_dict.items():
+        bcpm_years_dict[year] = sum(gpa)/float(len(gpa))
 
-    bcpm_gpa_trend = [x for x in trend if x is not None]
+    bcpm_gpa_trend = [bcpm_years_dict[key] for key in sorted(bcpm_years_dict.keys())]
 
     # AMCAS BCPM (Science) GPA Calculator
     bcpm_quality_points = int()
