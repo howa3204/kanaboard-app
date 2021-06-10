@@ -62,10 +62,11 @@ def dashboard(request):
     if not official_mcat:
         mcat_score = practice_score
         mcat_data = practice_data
+        mcat_type = 'Practice'
     else:
         mcat_score = official_score
-        mcat_type = 'Official'
         mcat_data = official_data
+        mcat_type = 'Official'
 
     grades = {
         'A+':4.0,
