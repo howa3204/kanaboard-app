@@ -126,7 +126,7 @@ def dashboard(request):
         years_dict[course.academic_year].append(gpa)
 
     for year,gpa in years_dict.items():
-        years_dict[year] = sum(gpa)/float(len(gpa))
+        years_dict[year] = round(sum(gpa)/float(len(gpa)), 2)
 
     cumulative_gpa_trend = [years_dict[key] for key in sorted(years_dict.keys())]
 
@@ -152,7 +152,7 @@ def dashboard(request):
         bcpm_years_dict[course.academic_year].append(gpa)
 
     for year,gpa in bcpm_years_dict.items():
-        bcpm_years_dict[year] = sum(gpa)/float(len(gpa))
+        bcpm_years_dict[year] = round(sum(gpa)/float(len(gpa)), 2)
 
     bcpm_gpa_trend = [bcpm_years_dict[key] for key in sorted(bcpm_years_dict.keys())]
 
