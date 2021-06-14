@@ -13,7 +13,7 @@ from .models import Course
 
 # Display all courses.
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def coursework(request):
     coursework = Course.objects.filter(owner=request.user)
 
@@ -21,7 +21,7 @@ def coursework(request):
     return render(request, 'coursework/coursework.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def add_course(request):
     form = CourseForm()
 
@@ -37,7 +37,7 @@ def add_course(request):
     return render(request, 'coursework/add_course.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def update_course(request, course_id):
     course = Course.objects.get(id=course_id)
     form = CourseForm(instance=course)
@@ -55,7 +55,7 @@ def update_course(request, course_id):
     return render(request, 'coursework/add_course.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def delete_course(request, course_id):
     course = Course.objects.get(id=course_id)
 

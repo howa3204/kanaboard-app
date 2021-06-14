@@ -13,7 +13,7 @@ from .forms import MCATForm
 
 # Display all MCAT scores.
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def mcat(request):
     mcat = MCAT.objects.filter(owner=request.user)
 
@@ -21,7 +21,7 @@ def mcat(request):
     return render(request, 'mcat/mcat.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def create_MCAT(request):
     form = MCATForm()
 
@@ -37,7 +37,7 @@ def create_MCAT(request):
     return render(request, 'mcat/add_mcat.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def update_MCAT(request, mcat_id):
     mcat = MCAT.objects.get(id=mcat_id)
     form = MCATForm(instance=mcat)
@@ -55,7 +55,7 @@ def update_MCAT(request, mcat_id):
     return render(request, 'mcat/add_mcat.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def delete_MCAT(request, mcat_id):
     mcat = MCAT.objects.get(id=mcat_id)
 

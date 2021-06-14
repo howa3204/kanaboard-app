@@ -17,7 +17,7 @@ from .forms import QuickForm
 # Create your views here.
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def dashboard(request):
     # Show all letter types and author names in dashboard.
     courses = Course.objects.filter(owner=request.user)

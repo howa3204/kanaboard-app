@@ -13,7 +13,7 @@ from .forms import ActivityForm
 
 # Display all activities.
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def activities(request):
     activities = Activity.objects.filter(owner=request.user)
 
@@ -21,7 +21,7 @@ def activities(request):
     return render(request, 'activities/activities.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def add_activity(request):
     form = ActivityForm()
 
@@ -37,7 +37,7 @@ def add_activity(request):
     return render(request, 'activities/add_activity.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def update_activity(request, activity_id):
     activity = Activity.objects.get(id=activity_id)
     form = ActivityForm(instance=activity)
@@ -55,7 +55,7 @@ def update_activity(request, activity_id):
     return render(request, 'activities/add_activity.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def delete_activity(request, activity_id):
     activity = Activity.objects.get(id=activity_id)
 

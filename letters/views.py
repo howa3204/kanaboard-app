@@ -13,7 +13,7 @@ from .models import Letter
 
 # Display all letters of reccomendation.
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def letters(request):
     letters = Letter.objects.filter(owner=request.user)
 
@@ -21,7 +21,7 @@ def letters(request):
     return render(request, 'letters/letters.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def create_letter(request):
     form = LetterForm()
 
@@ -37,7 +37,7 @@ def create_letter(request):
     return render(request, 'letters/add_letter.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def update_letter(request, letter_id):
     letter = Letter.objects.get(id=letter_id)
     form = LetterForm(instance=letter)
@@ -55,7 +55,7 @@ def update_letter(request, letter_id):
     return render(request, 'letters/add_letter.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def delete_letter(request, letter_id):
     letter = Letter.objects.get(id=letter_id)
 

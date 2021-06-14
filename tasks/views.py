@@ -10,7 +10,7 @@ from .forms import TaskForm
 
 # Display all tasks in list view.
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def tasks(request):
     tasks = Task.objects.filter(owner=request.user)
 
@@ -18,7 +18,7 @@ def tasks(request):
     return render(request, 'tasks/tasks.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def create_task(request):
     form = TaskForm()
 
@@ -34,7 +34,7 @@ def create_task(request):
     return render(request, 'tasks/add_task.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='settings_app:sorry')
+@user_passes_test(subscription_check, login_url='settings_app:update_billing')
 def update_task(request, task_id):
     task = Task.objects.get(id=task_id)
     form = TaskForm(instance=task)
@@ -52,7 +52,7 @@ def update_task(request, task_id):
     return render(request, 'tasks/add_task.html', context)
 
 @login_required(login_url='authentication:login')
-@user_passes_test(subscription_check, login_url='authentication:sorry')
+@user_passes_test(subscription_check, login_url='authentication:update_billing')
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id)
 
