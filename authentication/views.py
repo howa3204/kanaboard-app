@@ -35,5 +35,5 @@ def subscription_check(user):
     return customer.status == 'active' or customer.status == 'trialing'
 
 @login_required(login_url='authentication:login')
-def sorry(request):
-    return render(request, 'authentication/sorry.html')
+def authentication(request):
+    return render(request, 'authentication/authentication.html')
