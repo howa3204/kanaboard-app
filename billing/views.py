@@ -129,6 +129,7 @@ def stripe_webhook(request):
         customer = StripeCustomer.objects.get(customer_id=customer_id)
         subscription = stripe.Subscription.retrieve(customer.subscription_id)
         customer = stripe.Customer.retrieve(customer_id)
+        invoice_id = invoice.get('id')
 
         # Perform checks.
         now = datetime.datetime.fromtimestamp(int(invoice.get('created')))
@@ -138,6 +139,7 @@ def stripe_webhook(request):
         # Cancel subscription if 14 days since subscription start and no billing details added.
         if days_since < 15 :
             stripe.Subscription.delete(subscription)
+            stripe.Invoice.void_invoice(invoice_id)
         else:
             pass
 
