@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authentication',
     'base',
     'billing',
+    'blog',
     'contact',
     'coursework',
     'dashboard',
