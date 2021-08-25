@@ -173,7 +173,7 @@
                   <span style="color: black" class="menu-text">Tasks</span>
                 </a>
               </li>
-              <div class="separator separator-dashed m-4"></div>
+              <div class="separator separator-solid m-4"></div>
               <li class="menu-item {% if url_name == 'activities' %}menu-item-active{% endif %}{% if url_name == 'add_activity' %}menu-item-active{% endif %}{% if url_name == 'update_activity' %}menu-item-active{% endif %}{% if url_name == 'delete_activity' %}menu-item-active{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{% url 'activities:activities' %}" class="menu-link menu-toggle">
                   <span class="svg-icon menu-icon">
@@ -206,7 +206,7 @@
                   <span style="color: black" class="menu-text">MCAT</span>
                 </a>
               </li>
-              <div class="separator separator-dashed m-4"></div>
+              <div class="separator separator-solid m-4"></div>
             </ul>
 
           {% endwith %}
