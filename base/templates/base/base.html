@@ -207,7 +207,27 @@
                 </a>
               </li>
               <div class="separator separator-solid m-4"></div>
+              <li class="menu-item {% if url_name == 'interview' %}menu-item-active{% endif %}{% if url_name == 'interview' %}menu-item-active{% endif %}{% if url_name == 'interview' %}menu-item-active{% endif %}{% if url_name == 'interview' %}menu-item-active{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="#" class="menu-link menu-toggle">
+                  <span class="svg-icon menu-icon">
+                    <i style="color: black" data-feather="users"></i>
+                  </span>
+                  <span style="color: black" class="menu-text">Interview Prep<br>(Coming soon!)</span>
+                </a>
+              </li>
+              <li class="menu-item {% if url_name == 'wellness' %}menu-item-active{% endif %}{% if url_name == 'wellness' %}menu-item-active{% endif %}{% if url_name == 'wellness' %}menu-item-active{% endif %}{% if url_name == 'wellness' %}menu-item-active{% endif %}" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="#" class="menu-link menu-toggle">
+                  <span class="svg-icon menu-icon">
+                    <i style="color: black" data-feather="sun"></i>
+                  </span>
+                  <span style="color: black" class="menu-text">Wellness<br>(Coming soon!)</span>
+                </a>
+              </li>
             </ul>
+
+            <p class="mt-30 text-center text-muted font-weight-bold">
+              <em>"The chapter you're<br>learning today, will save<br>someone's life tomorrow."</em><br>- Anonymous
+            </p>
 
           {% endwith %}
 
